@@ -1,0 +1,18 @@
+{"name": "support_escalation",
+ "utterances": [
+  {"speaker": "customer", "text": "We have an urgent problem, our production outage started an hour ago.", "start": 0.0, "end": 4.5},
+  {"speaker": "agent", "text": "I'm sorry to hear that. Let me pull up your account right away.", "start": 4.7, "end": 8.0},
+  {"speaker": "customer", "text": "This is concerning, last time there was downtime too. I'm not sure this will work for us long term.", "start": 9.0, "end": 14.0},
+  {"speaker": "agent", "text": "Totally understand the worry, let's get this fixed first.", "start": 14.2, "end": 17.0},
+  {"speaker": "customer", "text": "Also what does the premium support tier cost? Is there a discount?", "start": 26.0, "end": 30.0},
+  {"speaker": "agent", "text": "Premium support is included in the enterprise plan.", "start": 30.2, "end": 33.0},
+  {"speaker": "customer", "text": "Who is the best person on your team for escalations? Who is my contact?", "start": 34.0, "end": 38.0},
+  {"speaker": "agent", "text": "Priya Patel is your success manager, she handles escalations.", "start": 38.2, "end": 41.0},
+  {"speaker": "customer", "text": "Good. Let's schedule a follow up call next week and send an action item list.", "start": 43.0, "end": 47.0}
+ ],
+ "gold": [
+  {"t": 5, "intent": "objection"},
+  {"t": 28, "intent": "pricing"},
+  {"t": 36, "intent": "contact_lookup"},
+  {"t": 45, "intent": "next_steps"}
+ ]}

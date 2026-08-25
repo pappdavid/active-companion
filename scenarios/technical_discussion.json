@@ -1,0 +1,16 @@
+{"name": "technical_discussion",
+ "utterances": [
+  {"speaker": "engineer", "text": "How does your API integration work? Do you support webhooks?", "start": 6.0, "end": 10.5},
+  {"speaker": "se", "text": "REST over HTTPS with OAuth2, webhooks signed with HMAC.", "start": 10.7, "end": 14.5},
+  {"speaker": "engineer", "text": "What's the latency and throughput spec under load?", "start": 27.0, "end": 31.0},
+  {"speaker": "se", "text": "p50 is 120 milliseconds, sustained five thousand events per second.", "start": 31.2, "end": 35.0},
+  {"speaker": "engineer", "text": "Who is from your team should review our security questionnaire? Who is the technical contact?", "start": 44.0, "end": 49.0},
+  {"speaker": "se", "text": "Marcus Chen our solutions engineer will handle the review.", "start": 49.2, "end": 52.5},
+  {"speaker": "engineer", "text": "Great. Let's plan next steps, can you send the sandbox credentials and follow up Thursday?", "start": 54.0, "end": 59.0}
+ ],
+ "gold": [
+  {"t": 8, "intent": "technical_detail"},
+  {"t": 29, "intent": "technical_detail"},
+  {"t": 46, "intent": "contact_lookup"},
+  {"t": 56, "intent": "next_steps"}
+ ]}

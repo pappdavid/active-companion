@@ -1,0 +1,124 @@
+{
+ "per_scenario": {
+  "sales_negotiation": {
+   "gold_hits": 4,
+   "gold_total": 4,
+   "hit_rate": 1.0,
+   "max_latency_s": 3.0,
+   "cards": [
+    [
+     "pricing",
+     11.0
+    ],
+    [
+     "pricing",
+     15.0
+    ],
+    [
+     "competitor",
+     26.0
+    ],
+    [
+     "competitor",
+     32.0
+    ],
+    [
+     "objection",
+     53.0
+    ],
+    [
+     "objection",
+     57.0
+    ],
+    [
+     "next_steps",
+     60.0
+    ]
+   ]
+  },
+  "support_escalation": {
+   "gold_hits": 4,
+   "gold_total": 4,
+   "hit_rate": 1.0,
+   "max_latency_s": 2.0,
+   "cards": [
+    [
+     "objection",
+     4.5
+    ],
+    [
+     "objection",
+     8.0
+    ],
+    [
+     "objection",
+     14.0
+    ],
+    [
+     "objection",
+     17.0
+    ],
+    [
+     "pricing",
+     30.0
+    ],
+    [
+     "pricing",
+     33.0
+    ],
+    [
+     "contact_lookup",
+     38.0
+    ],
+    [
+     "contact_lookup",
+     41.0
+    ],
+    [
+     "next_steps",
+     47.0
+    ]
+   ]
+  },
+  "technical_discussion": {
+   "gold_hits": 4,
+   "gold_total": 4,
+   "hit_rate": 1.0,
+   "max_latency_s": 3.0,
+   "cards": [
+    [
+     "technical_detail",
+     10.5
+    ],
+    [
+     "technical_detail",
+     14.5
+    ],
+    [
+     "technical_detail",
+     31.0
+    ],
+    [
+     "technical_detail",
+     35.0
+    ],
+    [
+     "contact_lookup",
+     49.0
+    ],
+    [
+     "contact_lookup",
+     52.5
+    ],
+    [
+     "next_steps",
+     59.0
+    ]
+   ]
+  }
+ },
+ "overall_gold_hits": "12/12",
+ "hit_rate": 1.0,
+ "max_card_latency_s": 3.0,
+ "mode": "scenario JSON utterances via pipeline.ingest_utterances (no audio deps)"
+}

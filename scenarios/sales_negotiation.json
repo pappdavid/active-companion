@@ -1,0 +1,18 @@
+{"name": "sales_negotiation",
+ "utterances": [
+  {"speaker": "prospect", "text": "Hi thanks for joining, I'm Dana from ACME operations.", "start": 0.0, "end": 3.0},
+  {"speaker": "rep", "text": "Great to meet you Dana. What would you like to cover today?", "start": 3.2, "end": 6.5},
+  {"speaker": "prospect", "text": "Let's start with pricing. What does it cost per seat?", "start": 7.0, "end": 11.0},
+  {"speaker": "rep", "text": "We're at twenty nine dollars per seat monthly on annual billing.", "start": 11.2, "end": 15.0},
+  {"speaker": "prospect", "text": "And how do you compare to RivalHQ? We're currently using them and wondering if it's worth switching.", "start": 20.0, "end": 26.0},
+  {"speaker": "rep", "text": "RivalHQ is a solid tool but exports are manual; we automate reporting with an API.", "start": 26.2, "end": 32.0},
+  {"speaker": "prospect", "text": "Honestly I'm worried it's too expensive for the budget we have this quarter.", "start": 48.0, "end": 53.0},
+  {"speaker": "rep", "text": "I understand the concern. We can structure annual pricing to fit.", "start": 53.2, "end": 57.0},
+  {"speaker": "prospect", "text": "Okay, what are the next steps? Can you send over a quote and contract by Friday?", "start": 55.0, "end": 60.0}
+ ],
+ "gold": [
+  {"t": 14, "intent": "pricing"},
+  {"t": 24, "intent": "competitor"},
+  {"t": 51, "intent": "objection"},
+  {"t": 57, "intent": "next_steps"}
+ ]}
