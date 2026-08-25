@@ -1,5 +1,49 @@
 {
  "per_scenario": {
+  "complex_questions": {
+   "gold_hits": 4,
+   "gold_total": 4,
+   "hit_rate": 1.0,
+   "max_latency_s": 0.0,
+   "cards": [
+    [
+     "technical_detail",
+     10
+    ],
+    [
+     "technical_detail",
+     15
+    ],
+    [
+     "competitor",
+     21
+    ],
+    [
+     "competitor",
+     25
+    ],
+    [
+     "objection",
+     45
+    ],
+    [
+     "objection",
+     49
+    ],
+    [
+     "pricing",
+     66
+    ],
+    [
+     "pricing",
+     70
+    ],
+    [
+     "next_steps",
+     88
+    ]
+   ]
+  },
   "sales_negotiation": {
    "gold_hits": 4,
    "gold_total": 4,
@@ -117,7 +161,7 @@
    ]
   }
  },
- "overall_gold_hits": "12/12",
+ "overall_gold_hits": "16/16",
  "hit_rate": 1.0,
  "max_card_latency_s": 3.0,
  "mode": "scenario JSON utterances via pipeline.ingest_utterances (no audio deps)"

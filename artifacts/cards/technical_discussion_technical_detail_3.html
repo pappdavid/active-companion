@@ -8,9 +8,13 @@
   .bullet { background:#1d2433; border-radius:8px; padding:8px 12px; margin:8px 0; }
   .src { color:#7a8699; font-size:.75rem; margin-top:3px; }
   .trigger { color:#98a2b3; font-style:italic; margin-top:10px; }
+  .gap { color:#fbbf24; font-size:.85rem; margin-top:8px; }
+  .chip { font-size:.62rem; font-weight:600; letter-spacing:.05em; padding:2px 9px;
+           border-radius:99px; background:#173226; color:#34d399; vertical-align:2px; }
+  .chip.dim { background:#1d2433; color:#7a8699; }
   .accent-green{--accent:#34d399} .accent-orange{--accent:#fb923c}
   .accent-blue{--accent:#60a5fa} .accent-purple{--accent:#a78bfa}
   .accent-red{--accent:#f87171} .accent-teal{--accent:#2dd4bf}
 </style></head>
-<body><div class="card accent-purple"><h2>Technical Reference</h2>
+<body><div class="card accent-purple"><h2>Technical Reference <span class="chip dim">RETRIEVAL</span></h2>
 <div class="bullet">- REST API: JSON over HTTPS, OAuth2 client credentials, rate limit 600 req/min.<div class="src">Technical spec sheet</div></div><div class="bullet">- Webhooks: signed with HMAC-SHA256, retries with exponential backoff for 24h.<div class="src">Technical spec sheet</div></div><div class="bullet">- Throughput: sustained 5k events/s per tenant on the standard plan.<div class="src">Technical spec sheet</div></div><div class="bullet">throughput is one hundred thousand events per second with end to end latency<div class="src">Ingestion platform facts</div></div><div class="bullet">under two hundred milliseconds.<div class="src">Ingestion platform facts</div></div><div class="trigger">&ldquo;p50 is 120 milliseconds, sustained five thousand events per second.&rdquo;</div></div></body></html>

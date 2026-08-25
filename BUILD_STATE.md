@@ -60,3 +60,21 @@ entirely local/free stack:
   deps deliberately omitted (ENOSPC lesson); JSON path covers identical logic.
 - Screenshot-grade artifacts would need Playwright/Chromium on a roomier box.
 - Embedding upgrade path (sentence-transformers MiniLM) coded, off by default.
+
+## 2026-08-25 (late) — LLM escalation lane added (David's review: "actual LLM
+integration for more complex answers when the need is detected")
+
+- New `companion/llm.py`: complexity gate (`needs_llm` — advice requests,
+  comparisons, hypotheticals, multi-part questions), grounded prompt, strict
+  cited-JSON parsing (uncited claims dropped), `gap` field for honest
+  "knowledge doesn't cover this" declarations.
+- Pipeline: flagged moments escalate to free OpenAI-compatible endpoint
+  (default `tencent/hy-mt2-30b-a3b` via local proxy 127.0.0.1:8787);
+  failures degrade silently to retrieval bullets; rate-limited 1/20s.
+- Server: single shared pipeline behind `/api/utterance`, escalation runs
+  off the event loop; UI chips show which brain produced each card + gaps.
+- Eval: hermetic 12/12 unchanged; live lane **16/16** gold (new
+  complex_questions scenario), 7/7 escalations ok, max LLM latency 3.5s,
+  live-server smoke test verified end-to-end. Tests 10/10.
+- Known limits: no mic/STT capture wired (text in); STT path exists but the
+  product edge remains transcript-driven.

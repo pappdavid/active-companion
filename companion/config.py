@@ -15,3 +15,7 @@ RECENT_UTTERANCES = 2        # tail used for recency weighting
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 WHISPER_MODEL = "base.en"
 SERVER_PORT = 8734
+
+# LLM escalation lane (free local proxy; disable with COMPANION_LLM_DISABLE)
+LLM_MAX_BULLETS = 4          # cited LLM bullets kept per escalated card
+LLM_MIN_INTERVAL_S = 20.0    # min seconds between escalations (cost/rate guard)

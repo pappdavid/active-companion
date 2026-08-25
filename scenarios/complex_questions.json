@@ -1,0 +1,22 @@
+{
+  "name": "complex_questions",
+  "description": "Moments that need synthesis, not just retrieval: advice requests, vendor comparisons, hypotheticals. Exercises the grounded LLM escalation lane.",
+  "utterances": [
+    {"speaker": "rep",        "text": "Thanks for making time today. Before we dive in, anything top of mind?", "start": 0, "end": 5},
+    {"speaker": "prospect",   "text": "How would you handle integration with our warehouse, and what about data residency?", "start": 5, "end": 10},
+    {"speaker": "rep",        "text": "Good question. Our connector supports Postgres and Snowflake out of the box.", "start": 11, "end": 15},
+    {"speaker": "prospect",   "text": "Okay. And what should I tell procurement when they ask about you versus RivalHQ?", "start": 16, "end": 21},
+    {"speaker": "rep",        "text": "We automate the reporting they export manually.", "start": 22, "end": 25},
+    {"speaker": "prospect",   "text": "Sure, but what if our security team flags risk in your standard terms next month?", "start": 40, "end": 45},
+    {"speaker": "rep",        "text": "Legal has standard fallback language for that.", "start": 46, "end": 49},
+    {"speaker": "prospect",   "text": "Fine. What does the enterprise tier cost per seat?", "start": 62, "end": 66},
+    {"speaker": "rep",        "text": "Enterprise is quoted per seat with volume tiers.", "start": 67, "end": 70},
+    {"speaker": "prospect",   "text": "Great, let's schedule a follow up call next week.", "start": 84, "end": 88}
+  ],
+  "gold": [
+    {"intent": "technical_detail", "t": 10},
+    {"intent": "competitor",       "t": 21},
+    {"intent": "objection",        "t": 45},
+    {"intent": "pricing",          "t": 66}
+  ]
+}

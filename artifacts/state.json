@@ -9,28 +9,29 @@
     "accent": "purple",
     "bullets": [
      {
-      "source": "knowledge",
-      "title": "Daniel Reyes",
-      "text": "Account manager for enterprise support escalations."
+      "source": "llm:[Technical spec sheet]",
+      "title": "[Technical spec sheet]",
+      "text": "REST API uses JSON over HTTPS with OAuth2; rate limit is 600 requests/min."
      },
      {
-      "source": "knowledge",
-      "title": "Daniel Reyes",
-      "text": "Works at our Austin support hub."
+      "source": "llm:[Technical spec sheet]",
+      "title": "[Technical spec sheet]",
+      "text": "Webhooks use HMAC-SHA256 signing and retry with exponential backoff for 24h."
      },
      {
-      "source": "knowledge",
-      "title": "Objection handling playbook",
-      "text": "- \"Won't work with our stack\": cite the REST API, webhooks, and CSV import; offer a sandbox tenant within 24h."
-     },
-     {
-      "source": "knowledge",
-      "title": "Technical spec sheet",
-      "text": "- Webhooks: signed with HMAC-SHA256, retries with exponential backoff for 24h."
+      "source": "llm:[Objection handling playbook]",
+      "title": "[Objection handling playbook]",
+      "text": "We provide a sandbox tenant within 24 hours to test integration."
      }
     ],
     "trigger_excerpt": "How does your API integration work? Do you support webhooks?",
-    "at": 10.5
+    "at": 10.5,
+    "mode": "llm",
+    "llm": {
+     "model": "tencent/hy-mt2-30b-a3b",
+     "latency_s": 1.29,
+     "status": "ok"
+    }
    }
   },
   {
@@ -63,7 +64,8 @@
      }
     ],
     "trigger_excerpt": "REST over HTTPS with OAuth2, webhooks signed with HMAC.",
-    "at": 14.5
+    "at": 14.5,
+    "mode": "retrieval"
    }
   },
   {
@@ -96,7 +98,8 @@
      }
     ],
     "trigger_excerpt": "What's the latency and throughput spec under load?",
-    "at": 31.0
+    "at": 31.0,
+    "mode": "retrieval"
    }
   },
   {
@@ -134,7 +137,8 @@
      }
     ],
     "trigger_excerpt": "p50 is 120 milliseconds, sustained five thousand events per second.",
-    "at": 35.0
+    "at": 35.0,
+    "mode": "retrieval"
    }
   },
   {
@@ -146,28 +150,29 @@
     "accent": "blue",
     "bullets": [
      {
-      "source": "knowledge",
-      "title": "Technical spec sheet",
-      "text": "- REST API: JSON over HTTPS, OAuth2 client credentials, rate limit 600 req/min."
+      "source": "llm:[Who's who]",
+      "title": "[Who's who]",
+      "text": "Marcus Chen handles technical deep-dive discussions as our solutions engineer."
      },
      {
-      "source": "knowledge",
-      "title": "Technical spec sheet",
-      "text": "- Webhooks: signed with HMAC-SHA256, retries with exponential backoff for 24h."
+      "source": "llm:[Who's who]",
+      "title": "[Who's who]",
+      "text": "Priya Patel manages onboarding and escalations as our customer success manager."
      },
      {
-      "source": "knowledge",
-      "title": "Who's who",
-      "text": "- Marcus Chen \u2014 Solutions Engineer, our side (technical deep-dives)"
-     },
-     {
-      "source": "knowledge",
-      "title": "Who's who",
-      "text": "- Tom Okafor \u2014 Security lead, ACME Corp (runs the security review)"
+      "source": "llm:[Who's who]",
+      "title": "[Who's who]",
+      "text": "Tom Okafor leads the security review process at ACME Corp."
      }
     ],
     "trigger_excerpt": "Who is from your team should review our security questionnaire? Who is the technical contact?",
-    "at": 49.0
+    "at": 49.0,
+    "mode": "llm",
+    "llm": {
+     "model": "tencent/hy-mt2-30b-a3b",
+     "latency_s": 1.25,
+     "status": "ok"
+    }
    }
   },
   {
@@ -195,7 +200,8 @@
      }
     ],
     "trigger_excerpt": "Marcus Chen our solutions engineer will handle the review.",
-    "at": 52.5
+    "at": 52.5,
+    "mode": "retrieval"
    }
   },
   {
@@ -228,7 +234,8 @@
      }
     ],
     "trigger_excerpt": "Great. Let's plan next steps, can you send the sandbox credentials and follow up Thursday?",
-    "at": 59.0
+    "at": 59.0,
+    "mode": "retrieval"
    }
   }
  ]
