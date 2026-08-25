@@ -1,6 +1,4 @@
+.venv/
 __pycache__/
 *.pyc
-artifacts/
-scenarios/audio/
-.pytest_cache/
-.venv/
+scenarios/audio/*.wav

@@ -1,0 +1,235 @@
+{
+ "events": [
+  {
+   "utterance": "How does your API integration work? Do you support webhooks?",
+   "intent": "technical_detail",
+   "card": {
+    "intent": "technical_detail",
+    "title": "Technical Reference",
+    "accent": "purple",
+    "bullets": [
+     {
+      "source": "knowledge",
+      "title": "Daniel Reyes",
+      "text": "Account manager for enterprise support escalations."
+     },
+     {
+      "source": "knowledge",
+      "title": "Daniel Reyes",
+      "text": "Works at our Austin support hub."
+     },
+     {
+      "source": "knowledge",
+      "title": "Objection handling playbook",
+      "text": "- \"Won't work with our stack\": cite the REST API, webhooks, and CSV import; offer a sandbox tenant within 24h."
+     },
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- Webhooks: signed with HMAC-SHA256, retries with exponential backoff for 24h."
+     }
+    ],
+    "trigger_excerpt": "How does your API integration work? Do you support webhooks?",
+    "at": 10.5
+   }
+  },
+  {
+   "utterance": "REST over HTTPS with OAuth2, webhooks signed with HMAC.",
+   "intent": "technical_detail",
+   "card": {
+    "intent": "technical_detail",
+    "title": "Technical Reference",
+    "accent": "purple",
+    "bullets": [
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- REST API: JSON over HTTPS, OAuth2 client credentials, rate limit 600 req/min."
+     },
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- Webhooks: signed with HMAC-SHA256, retries with exponential backoff for 24h."
+     },
+     {
+      "source": "knowledge",
+      "title": "Objection handling playbook",
+      "text": "- \"Won't work with our stack\": cite the REST API, webhooks, and CSV import; offer a sandbox tenant within 24h."
+     },
+     {
+      "source": "knowledge",
+      "title": "Objection handling playbook",
+      "text": "- \"Worried about downtime\": 99.95% uptime SLA, status page, migration runbook with rollback."
+     }
+    ],
+    "trigger_excerpt": "REST over HTTPS with OAuth2, webhooks signed with HMAC.",
+    "at": 14.5
+   }
+  },
+  {
+   "utterance": "What's the latency and throughput spec under load?",
+   "intent": "technical_detail",
+   "card": {
+    "intent": "technical_detail",
+    "title": "Technical Reference",
+    "accent": "purple",
+    "bullets": [
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- REST API: JSON over HTTPS, OAuth2 client credentials, rate limit 600 req/min."
+     },
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- Webhooks: signed with HMAC-SHA256, retries with exponential backoff for 24h."
+     },
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- Latency: p50 120 ms, p99 400 ms for read endpoints in us-east."
+     },
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- Throughput: sustained 5k events/s per tenant on the standard plan."
+     }
+    ],
+    "trigger_excerpt": "What's the latency and throughput spec under load?",
+    "at": 31.0
+   }
+  },
+  {
+   "utterance": "p50 is 120 milliseconds, sustained five thousand events per second.",
+   "intent": "technical_detail",
+   "card": {
+    "intent": "technical_detail",
+    "title": "Technical Reference",
+    "accent": "purple",
+    "bullets": [
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- REST API: JSON over HTTPS, OAuth2 client credentials, rate limit 600 req/min."
+     },
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- Webhooks: signed with HMAC-SHA256, retries with exponential backoff for 24h."
+     },
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- Throughput: sustained 5k events/s per tenant on the standard plan."
+     },
+     {
+      "source": "knowledge",
+      "title": "Ingestion platform facts",
+      "text": "throughput is one hundred thousand events per second with end to end latency"
+     },
+     {
+      "source": "knowledge",
+      "title": "Ingestion platform facts",
+      "text": "under two hundred milliseconds."
+     }
+    ],
+    "trigger_excerpt": "p50 is 120 milliseconds, sustained five thousand events per second.",
+    "at": 35.0
+   }
+  },
+  {
+   "utterance": "Who is from your team should review our security questionnaire? Who is the technical contact?",
+   "intent": "contact_lookup",
+   "card": {
+    "intent": "contact_lookup",
+    "title": "Who's Who",
+    "accent": "blue",
+    "bullets": [
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- REST API: JSON over HTTPS, OAuth2 client credentials, rate limit 600 req/min."
+     },
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- Webhooks: signed with HMAC-SHA256, retries with exponential backoff for 24h."
+     },
+     {
+      "source": "knowledge",
+      "title": "Who's who",
+      "text": "- Marcus Chen \u2014 Solutions Engineer, our side (technical deep-dives)"
+     },
+     {
+      "source": "knowledge",
+      "title": "Who's who",
+      "text": "- Tom Okafor \u2014 Security lead, ACME Corp (runs the security review)"
+     }
+    ],
+    "trigger_excerpt": "Who is from your team should review our security questionnaire? Who is the technical contact?",
+    "at": 49.0
+   }
+  },
+  {
+   "utterance": "Marcus Chen our solutions engineer will handle the review.",
+   "intent": "contact_lookup",
+   "card": {
+    "intent": "contact_lookup",
+    "title": "Who's Who",
+    "accent": "blue",
+    "bullets": [
+     {
+      "source": "knowledge",
+      "title": "Who's who",
+      "text": "- Dana Reyes \u2014 VP Operations, ACME Corp (economic buyer)"
+     },
+     {
+      "source": "knowledge",
+      "title": "Who's who",
+      "text": "- Marcus Chen \u2014 Solutions Engineer, our side (technical deep-dives)"
+     },
+     {
+      "source": "knowledge",
+      "title": "Who's who",
+      "text": "- Tom Okafor \u2014 Security lead, ACME Corp (runs the security review)"
+     }
+    ],
+    "trigger_excerpt": "Marcus Chen our solutions engineer will handle the review.",
+    "at": 52.5
+   }
+  },
+  {
+   "utterance": "Great. Let's plan next steps, can you send the sandbox credentials and follow up Thursday?",
+   "intent": "next_steps",
+   "card": {
+    "intent": "next_steps",
+    "title": "Next Steps / Talking Points",
+    "accent": "teal",
+    "bullets": [
+     {
+      "source": "knowledge",
+      "title": "Who's who",
+      "text": "- Dana Reyes \u2014 VP Operations, ACME Corp (economic buyer)"
+     },
+     {
+      "source": "knowledge",
+      "title": "Who's who",
+      "text": "- Marcus Chen \u2014 Solutions Engineer, our side (technical deep-dives)"
+     },
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- REST API: JSON over HTTPS, OAuth2 client credentials, rate limit 600 req/min."
+     },
+     {
+      "source": "knowledge",
+      "title": "Technical spec sheet",
+      "text": "- Throughput: sustained 5k events/s per tenant on the standard plan."
+     }
+    ],
+    "trigger_excerpt": "Great. Let's plan next steps, can you send the sandbox credentials and follow up Thursday?",
+    "at": 59.0
+   }
+  }
+ ]
+}
