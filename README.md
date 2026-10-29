@@ -2,7 +2,7 @@
 
 A transcript-driven meeting-assistant lab by David Papp. It detects useful moments in a sliding conversation window and produces cards from retrieved knowledge. Complex questions can use an optional local model; failures retain retrieval cards.
 
-**Status:** prototype. The hosted experience is a **scripted retrieval replay**, not live microphone capture or hosted AI inference. Source is currently private; the MIT license is in [LICENSE](LICENSE). [Hosted scripted replay](https://active-companion-replay.vercel.app) · [Portfolio](https://davidpapp.dev) · [Client Studio demo](https://client-studio-psi.vercel.app).
+**Status:** prototype. The hosted experience is a **scripted retrieval replay**, not live microphone capture or hosted AI inference. Source is MIT-licensed in [this repository](https://github.com/pappdavid/active-companion); see [LICENSE](LICENSE). [Hosted scripted replay](https://active-companion-replay.vercel.app) · [Portfolio](https://davidpapp.dev) · [Client Studio demo](https://client-studio-psi.vercel.app).
 
 ## Try it locally
 
