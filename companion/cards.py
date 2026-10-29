@@ -13,9 +13,18 @@ CARD_TEMPLATES = {
 
 
 def _sentences(text: str) -> list[str]:
-    lines = [re.sub(r"^\s*[-*+]\s+", "", line).strip()
-             for line in text.splitlines() if not line.lstrip().startswith('#')]
-    return [s.strip() for s in re.split(r"(?<=[.!?])\s+|\n+", '\n'.join(lines))
+    blocks, current = [], []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line or line.startswith('#') or re.match(r'^[-*+]\s+', line):
+            if current:
+                blocks.append(' '.join(current))
+                current = []
+        if line and not line.startswith('#'):
+            current.append(re.sub(r'^[-*+]\s+', '', line))
+    if current:
+        blocks.append(' '.join(current))
+    return [s.strip() for s in re.split(r"(?<=[.!?])\s+|\n+", '\n'.join(blocks))
             if len(s.strip()) > 25]
 
 
@@ -31,6 +40,10 @@ def compose_card(intent: str, evidence: list[dict],
     query_toks = set(re.findall(r"\w{4,}", (trigger_excerpt or "").lower()))
     for ev in evidence[:3]:
         for s in _sentences(ev["text"]):
+            if intent == 'next_steps' and not re.search(
+                    r'\b(next steps?|follow[- ]?up|action items?|send (?:a |the )?(?:quote|contract))\b',
+                    s, re.I):
+                continue
             stoks = set(re.findall(r"\w{4,}", s.lower()))
             candidates.append((len(query_toks & stoks), {
                 "source": "knowledge", "title": ev["title"], "text": s}))
@@ -45,10 +58,13 @@ def compose_card(intent: str, evidence: list[dict],
             seen.add(key)
         if len(bullets) == 5:
             break
-    return {
+    result = {
         "intent": intent,
         "title": tpl["title"],
         "accent": tpl["accent"],
         "bullets": bullets,
         "trigger_excerpt": (trigger_excerpt or "")[-220:],
     }
+    if not bullets:
+        result['gap'] = 'Retrieved sources do not establish a plan or commitment for this moment. Confirm with the meeting owner.'
+    return result

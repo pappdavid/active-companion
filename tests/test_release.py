@@ -61,3 +61,16 @@ def test_pricing_card_prioritizes_answer_snippets_over_headings_and_contacts():
     assert '$29' in card['bullets'][0]['text']
     assert all(not b['text'].startswith(('#', '- ')) for b in card['bullets'])
     assert all('Contact:' not in b['text'] for b in card['bullets'])
+
+
+def test_wrapped_source_prose_stays_a_complete_snippet():
+    from companion.cards import compose_card
+    card = compose_card('pricing', [{'title':'Pricing', 'text':'For teams around twenty seats we typically quote forty dollars per seat per\nmonth with a fifteen percent discount on annual commitments.'}], 'What is the pricing per seat?')
+    assert 'per month' in card['bullets'][0]['text']
+
+
+def test_next_steps_declares_gap_without_an_explicit_plan():
+    from companion.cards import compose_card
+    card = compose_card('next_steps', [{'title':'Account', 'text':'Current vendor: RivalHQ, contract renews in March; paying $42 per seat.'}], 'What are the next steps? Send a contract by Friday.')
+    assert card['bullets'] == []
+    assert card['gap']

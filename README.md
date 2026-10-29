@@ -2,7 +2,7 @@
 
 A transcript-driven meeting-assistant lab by David Papp. It detects useful moments in a sliding conversation window and produces cards from retrieved knowledge. Complex questions can use an optional local model; failures retain retrieval cards.
 
-**Status:** prototype. The hosted experience is a **scripted retrieval replay**, not live microphone capture or hosted AI inference. Source is currently private; the MIT license is in [LICENSE](LICENSE). [Portfolio](https://davidpapp.dev) · [Client Studio demo](https://client-studio-psi.vercel.app).
+**Status:** prototype. The hosted experience is a **scripted retrieval replay**, not live microphone capture or hosted AI inference. Source is currently private; the MIT license is in [LICENSE](LICENSE). [Hosted scripted replay](https://active-companion-replay.vercel.app) · [Portfolio](https://davidpapp.dev) · [Client Studio demo](https://client-studio-psi.vercel.app).
 
 ## Try it locally
 
@@ -13,7 +13,7 @@ git clone https://github.com/pappdavid/active-companion.git
 cd active-companion
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements-dev.txt
+python -m pip install -r requirements-lock.txt
 COMPANION_LLM_DISABLE=1 python -m pytest -q
 COMPANION_LLM_DISABLE=1 python tools/eval.py
 COMPANION_LLM_DISABLE=1 uvicorn companion.server:app --host 127.0.0.1 --port 8734
@@ -28,6 +28,8 @@ curl -X POST http://127.0.0.1:8734/api/utterance \
 ```
 
 The FastAPI server is a single-process, shared-session local lab with no authentication. Keep it on loopback. Do not expose its write API to the public Internet or feed confidential meeting material into an unreviewed endpoint.
+
+`requirements-lock.txt` pins the tested server/test environment; `requirements-server.txt` and `requirements-dev.txt` list the minimal direct dependency sets. CI runs the deterministic suite, scenario evaluation and replay build without provider access.
 
 ## Browser replay
 
@@ -69,6 +71,6 @@ Complexity heuristics selectively request a response, with a minimum interval be
 
 ## Verification and limits
 
-The October 29, 2026 deterministic run passed 16 tests and matched **16/16 authored gold moments across four scenarios**. This is scripted regression evidence, not a real-meeting accuracy benchmark. Reported 0–3 second offsets are simulated transcript-time differences, not measured end-to-end speech latency. Run the commands above before quoting results for another build.
+The October 29, 2026 deterministic run passed 18 tests and matched **16/16 authored gold moments across four scenarios**. This is scripted regression evidence, not a real-meeting accuracy benchmark. Reported 0–3 second offsets are simulated transcript-time differences, not measured end-to-end speech latency. Run the commands above before quoting results for another build.
 
 Historical model runs in [BUILD_STATE.md](BUILD_STATE.md) are labelled historical; no current live-model, microphone, diarization, multi-user or production-security acceptance is implied. Independent Claude review is pending because the installed account is logged out. See [RELEASE-READINESS.md](RELEASE-READINESS.md) for current evidence and open release gates.
