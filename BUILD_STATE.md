@@ -1,3 +1,7 @@
+# Historical build log
+
+This file records earlier implementation runs and claims. For the current source, limitations and verification use [README.md](README.md) and [RELEASE-READINESS.md](RELEASE-READINESS.md). Historical “complete” language and live-model figures below are not a current release acceptance claim.
+
 # BUILD STATE — Active Companion
 
 **Status:** Complete and verified host-side. pytest 6/6, eval harness 12/12 gold

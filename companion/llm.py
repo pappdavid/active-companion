@@ -170,6 +170,13 @@ def generate_answer(window_text: str, trigger_excerpt: str,
     t0 = time.perf_counter()
     try:
         txt = chat(build_messages(window_text, trigger_excerpt, evidence), cfg)
-        return parse_answer(txt), time.perf_counter() - t0
+        answer = parse_answer(txt)
+        if answer is not None:
+            titles = {ev['title'].strip() for ev in evidence[:config.TOP_K]}
+            answer['bullets'] = [b for b in answer['bullets']
+                                 if b['cite'].strip('[] ').strip() in titles]
+            if not answer['bullets']:
+                answer = None
+        return answer, time.perf_counter() - t0
     except LLMError:
         return None, time.perf_counter() - t0

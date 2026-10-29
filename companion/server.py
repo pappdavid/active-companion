@@ -5,6 +5,7 @@ import json
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from sse_starlette.sse import EventSourceResponse
+from pydantic import BaseModel, ConfigDict, Field
 
 from companion.pipeline import CompanionPipeline
 
@@ -16,20 +17,26 @@ _state = {"cards": [], "latest": None}
 _queue: asyncio.Queue = asyncio.Queue()
 
 
+class Utterance(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+    text: str = Field(min_length=1, max_length=4000, strict=True)
+    speaker: str = Field(default="prospect", min_length=1, max_length=80, strict=True)
+
+
 @app.get("/api/state")
 def state():
     return _state
 
 
 @app.post("/api/utterance")
-async def utterance(payload: dict):
+async def utterance(payload: Utterance):
     """Push one utterance {speaker,text}; broadcasts a card when one fires.
 
     Runs the full pipeline (classify -> retrieve -> optional LLM escalation),
     off the event loop so a slow LLM call never stalls the SSE stream.
     """
-    text = payload.get("text", "")
-    speaker = payload.get("speaker", "prospect")
+    text = payload.text
+    speaker = payload.speaker
     start = _t[0]
     end = start + max(1.5, len(text) / 15.0)
     _t[0] = end
@@ -57,7 +64,7 @@ async def events(request: type(None) = None):
 @app.get("/ui", response_class=HTMLResponse)
 def ui():
     return """<!doctype html>
-<html><head><meta charset="utf-8"><title>Active Companion</title>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Active Companion</title>
 <style>
  body{background:#0e1117;color:#e6e6e6;font-family:system-ui,sans-serif;padding:24px}
  #cards .card{border-radius:14px;padding:18px 20px;background:#161b26;
@@ -79,13 +86,15 @@ def ui():
 <script>
 function addCard(c){
  if(!c||!c.title)return;
- const chip='<span class="chip '+(c.mode||'retrieval')+'">'+((c.mode||'retrieval')==='llm'?'LLM'+(c.llm&&c.llm.latency_s!=null?' · '+c.llm.latency_s+'s':''):'RETRIEVAL')+'</span>';
+ function el(tag,cls,text){const n=document.createElement(tag);n.className=cls;n.textContent=text;return n;}
  const d=document.createElement('div');
- d.className='card accent-'+(c.accent||'blue');
- d.innerHTML='<h2>'+c.title+chip+'</h2>'+(c.bullets||[]).map(b=>
-  '<div class="bullet">'+b.text+'<div class="src">'+b.title+'</div></div>').join('')+
-  (c.gap?'<div class="gap">&#9888; '+c.gap+'</div>':'')+
-  '<div class="trigger">&ldquo;'+(c.trigger_excerpt||'')+'&rdquo;</div>';
+ d.className='card accent-'+(['green','orange','blue','purple','red','teal'].includes(c.accent)?c.accent:'blue');
+ const title=el('h2','',c.title);
+ const mode=c.mode==='llm'?'llm':'retrieval';
+ title.append(el('span','chip '+mode,mode==='llm'?'LLM':'RETRIEVAL'));d.append(title);
+ for(const b of c.bullets||[]){const bullet=el('div','bullet',b.text);bullet.append(el('div','src',b.title));d.append(bullet);}
+ if(c.gap)d.append(el('div','gap','⚠ '+c.gap));
+ d.append(el('div','trigger','“'+(c.trigger_excerpt||'')+'”'));
  document.getElementById('cards').prepend(d);
 }
 const es=new EventSource('/events');

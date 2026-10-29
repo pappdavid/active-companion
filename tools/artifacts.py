@@ -6,6 +6,7 @@ full timeline to artifacts/state.json.
 """
 import json
 import sys
+from html import escape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -14,6 +15,11 @@ from companion.pipeline import CompanionPipeline
 
 
 def render_card_html(card: dict) -> str:
+    card = {**card, **{key: escape(str(card.get(key) or ''), quote=True)
+            for key in ('title', 'accent', 'trigger_excerpt', 'gap')},
+            'bullets': [{**b, 'text': escape(str(b['text']), quote=True),
+                         'title': escape(str(b['title']), quote=True)}
+                        for b in card.get('bullets', [])]}
     bullets = "".join(
         f'<div class="bullet">{b["text"]}'
         f'<div class="src">{b["title"]}</div></div>'

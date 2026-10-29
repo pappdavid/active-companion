@@ -13,7 +13,9 @@ CARD_TEMPLATES = {
 
 
 def _sentences(text: str) -> list[str]:
-    return [s.strip() for s in re.split(r"(?<=[.!?])\s+|\n+", text)
+    lines = [re.sub(r"^\s*[-*+]\s+", "", line).strip()
+             for line in text.splitlines() if not line.lstrip().startswith('#')]
+    return [s.strip() for s in re.split(r"(?<=[.!?])\s+|\n+", '\n'.join(lines))
             if len(s.strip()) > 25]
 
 
@@ -25,20 +27,23 @@ def compose_card(intent: str, evidence: list[dict],
     retrieved knowledge chunks, plus the triggering utterance excerpt.
     """
     tpl = CARD_TEMPLATES[intent]
-    bullets = []
+    candidates = []
     query_toks = set(re.findall(r"\w{4,}", (trigger_excerpt or "").lower()))
     for ev in evidence[:3]:
         for s in _sentences(ev["text"]):
             stoks = set(re.findall(r"\w{4,}", s.lower()))
-            if query_toks & stoks or len(bullets) < 2:
-                bullets.append({
-                    "source": "knowledge",
-                    "title": ev["title"],
-                    "text": s,
-                })
-            if len(bullets) >= 5:
-                break
-        if len(bullets) >= 5:
+            candidates.append((len(query_toks & stoks), {
+                "source": "knowledge", "title": ev["title"], "text": s}))
+    ranked = sorted(candidates, key=lambda item: item[0], reverse=True)
+    relevant = [item for item in ranked if item[0] > 0]
+    bullets = []
+    seen = set()
+    for _, bullet in relevant or ranked:
+        key = (bullet['title'], bullet['text'])
+        if key not in seen:
+            bullets.append(bullet)
+            seen.add(key)
+        if len(bullets) == 5:
             break
     return {
         "intent": intent,

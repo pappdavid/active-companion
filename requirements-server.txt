@@ -2,3 +2,4 @@ fastapi
 sse-starlette
 uvicorn
 httpx
+numpy
